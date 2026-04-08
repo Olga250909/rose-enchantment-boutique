@@ -15,8 +15,12 @@ const statusColors: Record<Order["status"], string> = {
   delivered: "bg-sage-light text-foreground",
 };
 
+const ADMIN_PASSWORD = "admin2024";
+
 const AdminPage = () => {
   const { products, orders, addProduct, updateProduct, deleteProduct, updateOrderStatus } = useStore();
+  const [isAuth, setIsAuth] = useState(() => sessionStorage.getItem("admin_auth") === "true");
+  const [password, setPassword] = useState("");
   const [tab, setTab] = useState<"orders" | "products">("orders");
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
