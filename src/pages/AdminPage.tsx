@@ -1,6 +1,6 @@
 import { useStore, Order } from "@/context/StoreContext";
 import { useState } from "react";
-import { Package, Plus, Pencil, Trash2, Eye, EyeOff } from "lucide-react";
+import { Package, Plus, Pencil, Trash2, Lock, LogOut } from "lucide-react";
 import { toast } from "sonner";
 
 const statusLabels: Record<Order["status"], string> = {
@@ -15,8 +15,12 @@ const statusColors: Record<Order["status"], string> = {
   delivered: "bg-sage-light text-foreground",
 };
 
+const ADMIN_PASSWORD = "admin2024";
+
 const AdminPage = () => {
   const { products, orders, addProduct, updateProduct, deleteProduct, updateOrderStatus } = useStore();
+  const [isAuth, setIsAuth] = useState(() => sessionStorage.getItem("admin_auth") === "true");
+  const [password, setPassword] = useState("");
   const [tab, setTab] = useState<"orders" | "products">("orders");
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -58,9 +62,54 @@ const AdminPage = () => {
     setShowForm(true);
   };
 
+  const handleLogin = () => {
+    if (password === ADMIN_PASSWORD) {
+      setIsAuth(true);
+      sessionStorage.setItem("admin_auth", "true");
+      setPassword("");
+    } else {
+      toast.error("Неверный пароль");
+    }
+  };
+
+  const handleLogout = () => {
+    setIsAuth(false);
+    sessionStorage.removeItem("admin_auth");
+  };
+
+  if (!isAuth) {
+    return (
+      <div className="container mx-auto px-4 py-24 flex justify-center">
+        <div className="bg-card border border-border rounded-xl p-8 w-full max-w-sm space-y-6">
+          <div className="text-center">
+            <Lock className="w-10 h-10 text-primary mx-auto mb-3" />
+            <h1 className="font-heading text-2xl text-foreground">Вход в админ-панель</h1>
+          </div>
+          <input
+            type="password"
+            placeholder="Введите пароль"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            onKeyDown={e => e.key === "Enter" && handleLogin()}
+            className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm font-body"
+          />
+          <button onClick={handleLogin}
+            className="w-full bg-primary text-primary-foreground py-2.5 rounded-lg font-body text-sm hover:bg-rose-dark transition-colors">
+            Войти
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="font-heading text-4xl font-light text-foreground mb-8">Админ-панель</h1>
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="font-heading text-4xl font-light text-foreground">Админ-панель</h1>
+        <button onClick={handleLogout} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground font-body transition-colors">
+          <LogOut className="w-4 h-4" /> Выйти
+        </button>
+      </div>
 
       <div className="flex gap-3 mb-8">
         <button onClick={() => setTab("orders")}
