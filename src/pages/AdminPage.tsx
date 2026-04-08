@@ -1,6 +1,6 @@
 import { useStore, Order } from "@/context/StoreContext";
 import { useState } from "react";
-import { Package, Plus, Pencil, Trash2, Eye, EyeOff } from "lucide-react";
+import { Package, Plus, Pencil, Trash2, Lock, LogOut } from "lucide-react";
 import { toast } from "sonner";
 
 const statusLabels: Record<Order["status"], string> = {
