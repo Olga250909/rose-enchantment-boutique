@@ -9,15 +9,15 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link to="/" className="font-heading text-2xl font-medium tracking-wide text-foreground">
+      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+        <Link to="/" className="font-heading text-3xl font-medium tracking-wide text-foreground">
           Магия Роз
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 font-body text-sm tracking-wide">
-          <Link to="/" className="text-muted-foreground hover:text-primary transition-colors">Главная</Link>
-          <Link to="/catalog" className="text-muted-foreground hover:text-primary transition-colors">Каталог</Link>
-          <Link to="/delivery" className="text-muted-foreground hover:text-primary transition-colors">Доставка</Link>
+        <nav className="hidden md:flex items-center gap-10 font-body text-sm tracking-wider">
+          <Link to="/" className="text-muted-foreground hover:text-primary transition-colors story-link">Главная</Link>
+          <Link to="/catalog" className="text-muted-foreground hover:text-primary transition-colors story-link">Каталог</Link>
+          <Link to="/delivery" className="text-muted-foreground hover:text-primary transition-colors story-link">Доставка</Link>
         </nav>
 
         <div className="flex items-center gap-4">
@@ -27,7 +27,7 @@ const Header = () => {
           >
             <ShoppingBag className="w-5 h-5" />
             {totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center font-body">
+              <span className="absolute -top-1 -right-1 bg-gold text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-body">
                 {totalItems}
               </span>
             )}
