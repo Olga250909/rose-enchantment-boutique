@@ -13,7 +13,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div className="group">
       <Link to={`/product/${product.id}`} className="block">
-        <div className="relative overflow-hidden rounded-xl bg-muted aspect-[4/5] mb-4">
+        <div className="relative overflow-hidden rounded-xl bg-muted aspect-[4/5] mb-4 transition-shadow duration-500 group-hover:shadow-lg group-hover:shadow-rose-light/20">
           <img
             src={product.image}
             alt={product.name}
@@ -33,11 +33,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
             </h3>
           </Link>
           <p className="text-xs text-muted-foreground font-body mt-1">{product.roses} роз · {product.category}</p>
-          <p className="text-foreground font-body font-semibold mt-2">{product.price.toLocaleString("ru-RU")} ₽</p>
+          <p className="text-foreground font-heading text-xl font-semibold mt-2">{product.price.toLocaleString("ru-RU")} ₽</p>
         </div>
         <button
           onClick={() => addToCart(product)}
-          className="mt-1 p-2.5 rounded-full bg-primary text-primary-foreground hover:bg-rose-dark transition-colors flex-shrink-0"
+          className="mt-1 p-2.5 rounded-full bg-primary text-primary-foreground hover:bg-gold transition-colors flex-shrink-0"
           aria-label="В корзину"
         >
           <ShoppingBag className="w-4 h-4" />
