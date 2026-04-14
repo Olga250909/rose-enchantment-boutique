@@ -104,6 +104,14 @@
   .font-body {
     font-family: 'Nunito Sans', sans-serif;
   }
+  .bg-gradient-hero {
+    background: linear-gradient(
+      180deg,
+      hsl(30 40% 96%) 0%,
+      hsl(30 33% 97%) 50%,
+      hsl(0 0% 100%) 100%
+    );
+  }
 }
 
 @keyframes fade-in-up {
