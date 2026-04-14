@@ -39,8 +39,8 @@ export interface ChatSession {
 }
 
 const defaultDeliverySettings: DeliverySettings = {
-  freeDeliveryFrom: 5000,
-  deliveryCost: 500,
+  freeDeliveryFrom: 15000,
+  deliveryCost: 1500,
   deliveryTime: "2-3 часа",
   deliveryHours: "8:00 до 22:00",
   outsideMkadCost: "от 500 ₽",
