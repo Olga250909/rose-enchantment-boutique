@@ -1,7 +1,7 @@
 import productBlushBouquet from "@/assets/product-blush-bouquet.jpg";
 import productWhiteBox from "@/assets/product-white-box.jpg";
 import productHeartRoses from "@/assets/product-heart-roses.png";
-import productEditorialBouquet from "@/assets/product-editorial-bouquet.jpg";
+import productFantasyBouquet from "@/assets/product-fantasy-bouquet.jpg";
 import productLavender from "@/assets/product-lavender.jpg";
 import productMixRoses from "@/assets/product-mix-roses.jpg";
 
@@ -21,7 +21,7 @@ export const initialProducts: Product[] = [
     id: "1",
     name: "Нежность Прованса",
     description: "Букет из 15 пудровых роз в крафтовой упаковке с лентой из натурального шёлка. Идеальный подарок для романтического вечера.",
-    price: 3500,
+    price: 15000,
     image: productBlushBouquet,
     category: "Классические",
     inStock: true,
@@ -31,7 +31,7 @@ export const initialProducts: Product[] = [
     id: "2",
     name: "Белый Шёпот",
     description: "Элегантный букет из 21 белой розы. Символ чистоты и нежности, оформлен в персиковую бумагу.",
-    price: 4800,
+    price: 18500,
     image: productWhiteBox,
     category: "Премиум",
     inStock: true,
@@ -41,7 +41,7 @@ export const initialProducts: Product[] = [
     id: "3",
     name: "Страсть Бордо",
     description: "Роскошный букет из 25 красных роз. Классика, которая не нуждается в словах.",
-    price: 5500,
+    price: 21000,
     image: productHeartRoses,
     category: "Классические",
     inStock: true,
@@ -49,19 +49,19 @@ export const initialProducts: Product[] = [
   },
   {
     id: "4",
-    name: "Персиковый Рассвет",
-    description: "Букет из 19 персиковых роз с зеленью эвкалипта. Свежесть весеннего утра в каждом лепестке.",
-    price: 4200,
-    image: productEditorialBouquet,
-    category: "Авторские",
+    name: "Розовая Фантазия",
+    description: "Эксклюзивный букет из 31 розы с художественной подачей — лепестки, прорывающиеся сквозь бумагу. Настоящее произведение флористического искусства.",
+    price: 24500,
+    image: productFantasyBouquet,
+    category: "Премиум",
     inStock: true,
-    roses: 19,
+    roses: 31,
   },
   {
     id: "5",
     name: "Лавандовые Грёзы",
     description: "Романтичный букет из 17 розово-сиреневых роз с веточками сирени. Аромат французского сада.",
-    price: 4500,
+    price: 16500,
     image: productLavender,
     category: "Авторские",
     inStock: true,
@@ -71,7 +71,7 @@ export const initialProducts: Product[] = [
     id: "6",
     name: "Шляпная Коробка Шарм",
     description: "Микс из 25 роз в элегантной шляпной коробке пудрового цвета. Роскошный подарок.",
-    price: 6500,
+    price: 27000,
     image: productMixRoses,
     category: "Премиум",
     inStock: true,
