@@ -41,7 +41,7 @@ export const initialProducts: Product[] = [
     id: "3",
     name: "Страсть Бордо",
     description: "Роскошный букет из 25 красных роз. Классика, которая не нуждается в словах.",
-    price: 21000,
+    price: 35000,
     image: productHeartRoses,
     category: "Классические",
     inStock: true,
