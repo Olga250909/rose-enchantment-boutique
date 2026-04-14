@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Lock, LogOut, Package, ShoppingBag, Truck } from "lucide-react";
+import { Lock, LogOut, Package, ShoppingBag, Truck, MessageSquare } from "lucide-react";
 import { toast } from "sonner";
 import { useStore } from "@/context/StoreContext";
 import { Badge } from "@/components/ui/badge";

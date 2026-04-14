@@ -15,6 +15,7 @@ import PrivacyPage from "./pages/PrivacyPage";
 import OfferPage from "./pages/OfferPage";
 import AdminPage from "./pages/AdminPage";
 import NotFound from "./pages/NotFound";
+import ChatWidget from "./components/chat/ChatWidget";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
               </Routes>
             </main>
             <Footer />
+            <ChatWidget />
           </BrowserRouter>
         </CartProvider>
       </StoreProvider>
