@@ -13,14 +13,36 @@ export interface Order {
   status: "new" | "processing" | "delivered";
 }
 
+export interface DeliverySettings {
+  freeDeliveryFrom: number;
+  deliveryCost: number;
+  deliveryTime: string;
+  deliveryHours: string;
+  outsideMkadCost: string;
+  paymentMethods: string[];
+  freshnessGuarantee: string;
+}
+
+const defaultDeliverySettings: DeliverySettings = {
+  freeDeliveryFrom: 5000,
+  deliveryCost: 500,
+  deliveryTime: "2-3 часа",
+  deliveryHours: "8:00 до 22:00",
+  outsideMkadCost: "от 500 ₽",
+  paymentMethods: ["Банковской картой онлайн", "Наличными курьеру", "Переводом на карту"],
+  freshnessGuarantee: "Мы гарантируем свежесть каждого букета. Если вы не довольны качеством цветов, мы заменим букет бесплатно в день доставки.",
+};
+
 interface StoreContextType {
   products: Product[];
   orders: Order[];
+  deliverySettings: DeliverySettings;
   addProduct: (product: Omit<Product, "id">) => void;
   updateProduct: (id: string, product: Partial<Product>) => void;
   deleteProduct: (id: string) => void;
   addOrder: (order: Omit<Order, "id" | "createdAt" | "status">) => void;
   updateOrderStatus: (id: string, status: Order["status"]) => void;
+  updateDeliverySettings: (settings: Partial<DeliverySettings>) => void;
 }
 
 const StoreContext = createContext<StoreContextType | undefined>(undefined);
@@ -28,6 +50,7 @@ const StoreContext = createContext<StoreContextType | undefined>(undefined);
 export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [products, setProducts] = useState<Product[]>(initialProducts);
   const [orders, setOrders] = useState<Order[]>([]);
+  const [deliverySettings, setDeliverySettings] = useState<DeliverySettings>(defaultDeliverySettings);
 
   const addProduct = useCallback((product: Omit<Product, "id">) => {
     setProducts(prev => [...prev, { ...product, id: Date.now().toString() }]);
@@ -54,9 +77,15 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setOrders(prev => prev.map(o => o.id === id ? { ...o, status } : o));
   }, []);
 
+  const updateDeliverySettings = useCallback((updates: Partial<DeliverySettings>) => {
+    setDeliverySettings(prev => ({ ...prev, ...updates }));
+  }, []);
+
   return (
     <StoreContext.Provider value={{
-      products, orders, addProduct, updateProduct, deleteProduct, addOrder, updateOrderStatus,
+      products, orders, deliverySettings,
+      addProduct, updateProduct, deleteProduct,
+      addOrder, updateOrderStatus, updateDeliverySettings,
     }}>
       {children}
     </StoreContext.Provider>
