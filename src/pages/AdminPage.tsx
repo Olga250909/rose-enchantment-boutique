@@ -1,24 +1,25 @@
 import { useState } from "react";
-import { Lock, LogOut, Package, ShoppingBag, Truck } from "lucide-react";
+import { Lock, LogOut, Package, ShoppingBag, Truck, MessageSquare } from "lucide-react";
 import { toast } from "sonner";
 import { useStore } from "@/context/StoreContext";
 import { Badge } from "@/components/ui/badge";
 import OrdersTab from "@/components/admin/OrdersTab";
 import ProductsTab from "@/components/admin/ProductsTab";
 import DeliveryTab from "@/components/admin/DeliveryTab";
+import ChatsTab from "@/components/admin/ChatsTab";
 
 const ADMIN_PASSWORD = "admin2024";
 
-type Tab = "orders" | "products" | "delivery";
+type Tab = "orders" | "products" | "delivery" | "chats";
 
 const AdminPage = () => {
-  const { orders } = useStore();
+  const { orders, chatSessions } = useStore();
   const [isAuth, setIsAuth] = useState(() => sessionStorage.getItem("admin_auth") === "true");
   const [password, setPassword] = useState("");
   const [tab, setTab] = useState<Tab>("orders");
 
   const newCount = orders.filter(o => o.status === "new").length;
-
+  const ticketCount = chatSessions.filter(s => s.hasTicket).length;
   const handleLogin = () => {
     if (password === ADMIN_PASSWORD) {
       setIsAuth(true);
@@ -65,6 +66,7 @@ const AdminPage = () => {
     { key: "orders", label: "Заказы", icon: <Package className="w-4 h-4" />, count: orders.length },
     { key: "products", label: "Товары", icon: <ShoppingBag className="w-4 h-4" /> },
     { key: "delivery", label: "Доставка", icon: <Truck className="w-4 h-4" /> },
+    { key: "chats", label: "Чаты", icon: <MessageSquare className="w-4 h-4" />, count: chatSessions.length },
   ];
 
   return (
@@ -91,6 +93,9 @@ const AdminPage = () => {
             {t.key === "orders" && newCount > 0 && (
               <Badge className="bg-destructive text-destructive-foreground text-[10px] px-1.5 py-0">{newCount}</Badge>
             )}
+            {t.key === "chats" && ticketCount > 0 && (
+              <Badge className="bg-destructive text-destructive-foreground text-[10px] px-1.5 py-0">{ticketCount}</Badge>
+            )}
           </button>
         ))}
       </div>
@@ -98,6 +103,7 @@ const AdminPage = () => {
       {tab === "orders" && <OrdersTab />}
       {tab === "products" && <ProductsTab />}
       {tab === "delivery" && <DeliveryTab />}
+      {tab === "chats" && <ChatsTab />}
     </div>
   );
 };

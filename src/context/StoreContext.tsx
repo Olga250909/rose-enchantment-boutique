@@ -23,6 +23,21 @@ export interface DeliverySettings {
   freshnessGuarantee: string;
 }
 
+export interface ChatMessage {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+}
+
+export interface ChatSession {
+  id: string;
+  customerName: string;
+  customerPhone: string;
+  messages: ChatMessage[];
+  hasTicket: boolean;
+  createdAt: string;
+}
+
 const defaultDeliverySettings: DeliverySettings = {
   freeDeliveryFrom: 5000,
   deliveryCost: 500,
@@ -37,12 +52,16 @@ interface StoreContextType {
   products: Product[];
   orders: Order[];
   deliverySettings: DeliverySettings;
+  chatSessions: ChatSession[];
   addProduct: (product: Omit<Product, "id">) => void;
   updateProduct: (id: string, product: Partial<Product>) => void;
   deleteProduct: (id: string) => void;
   addOrder: (order: Omit<Order, "id" | "createdAt" | "status">) => void;
   updateOrderStatus: (id: string, status: Order["status"]) => void;
   updateDeliverySettings: (settings: Partial<DeliverySettings>) => void;
+  addChatSession: (name: string, phone: string) => string;
+  addMessageToChat: (sessionId: string, message: ChatMessage) => void;
+  createTicket: (sessionId: string) => void;
 }
 
 const StoreContext = createContext<StoreContextType | undefined>(undefined);
@@ -51,6 +70,7 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [products, setProducts] = useState<Product[]>(initialProducts);
   const [orders, setOrders] = useState<Order[]>([]);
   const [deliverySettings, setDeliverySettings] = useState<DeliverySettings>(defaultDeliverySettings);
+  const [chatSessions, setChatSessions] = useState<ChatSession[]>([]);
 
   const addProduct = useCallback((product: Omit<Product, "id">) => {
     setProducts(prev => [...prev, { ...product, id: Date.now().toString() }]);
@@ -81,11 +101,45 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setDeliverySettings(prev => ({ ...prev, ...updates }));
   }, []);
 
+  const addChatSession = useCallback((name: string, phone: string): string => {
+    const id = crypto.randomUUID();
+    setChatSessions(prev => [...prev, {
+      id,
+      customerName: name,
+      customerPhone: phone,
+      messages: [],
+      hasTicket: false,
+      createdAt: new Date().toLocaleString("ru-RU"),
+    }]);
+    return id;
+  }, []);
+
+  const addMessageToChat = useCallback((sessionId: string, message: ChatMessage) => {
+    setChatSessions(prev => prev.map(s => {
+      if (s.id !== sessionId) return s;
+      const existing = s.messages.findIndex(m => m.id === message.id);
+      if (existing >= 0) {
+        // Update existing message (for streaming)
+        const updated = [...s.messages];
+        updated[existing] = message;
+        return { ...s, messages: updated };
+      }
+      return { ...s, messages: [...s.messages, message] };
+    }));
+  }, []);
+
+  const createTicket = useCallback((sessionId: string) => {
+    setChatSessions(prev => prev.map(s =>
+      s.id === sessionId ? { ...s, hasTicket: true } : s
+    ));
+  }, []);
+
   return (
     <StoreContext.Provider value={{
-      products, orders, deliverySettings,
+      products, orders, deliverySettings, chatSessions,
       addProduct, updateProduct, deleteProduct,
       addOrder, updateOrderStatus, updateDeliverySettings,
+      addChatSession, addMessageToChat, createTicket,
     }}>
       {children}
     </StoreContext.Provider>
