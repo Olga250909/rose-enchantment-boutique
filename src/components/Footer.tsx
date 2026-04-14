@@ -22,7 +22,7 @@ const Footer = () => (
         <div>
           <h4 className="font-heading text-lg font-medium text-foreground mb-4">Контакты</h4>
           <div className="text-sm font-body text-muted-foreground space-y-2">
-            <p>📞 +7 (999) 123-45-67</p>
+            <p>📞 +7(921) 314-74-08</p>
             <p>✉️ hello@magiarose.ru</p>
             <p>📍 Москва и МО</p>
             <p>🕐 Ежедневно 8:00 — 22:00</p>
