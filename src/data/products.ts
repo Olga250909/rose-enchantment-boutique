@@ -14,6 +14,7 @@ export interface Product {
   category: string;
   inStock: boolean;
   roses: number;
+  badge?: string;
 }
 
 export const initialProducts: Product[] = [
@@ -26,6 +27,7 @@ export const initialProducts: Product[] = [
     category: "Классические",
     inStock: true,
     roses: 15,
+    badge: "Хит",
   },
   {
     id: "2",
@@ -46,6 +48,7 @@ export const initialProducts: Product[] = [
     category: "Классические",
     inStock: true,
     roses: 25,
+    badge: "Премиум",
   },
   {
     id: "4",
@@ -56,6 +59,7 @@ export const initialProducts: Product[] = [
     category: "Премиум",
     inStock: true,
     roses: 31,
+    badge: "Новинка",
   },
   {
     id: "5",
@@ -76,6 +80,7 @@ export const initialProducts: Product[] = [
     category: "Премиум",
     inStock: true,
     roses: 25,
+    badge: "Хит",
   },
   {
     id: "7",
@@ -96,5 +101,6 @@ export const initialProducts: Product[] = [
     category: "Сухоцветы",
     inStock: true,
     roses: 15,
+    badge: "Новинка",
   },
 ];

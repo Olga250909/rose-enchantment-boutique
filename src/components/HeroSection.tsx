@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import heroImage from "@/assets/hero-roses.jpg";
 
 const useScrollReveal = (delay = 0, threshold = 0.15) => {
@@ -33,68 +33,66 @@ const HeroSection = () => {
   const subtitle = useScrollReveal(300);
   const button = useScrollReveal(450);
   const trust = useScrollReveal(600);
-  const image = useScrollReveal(200);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-hero">
-      <div className="container mx-auto px-6 py-24 md:py-40">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Text */}
-          <div className="max-w-xl">
-            <div ref={label.ref} className={label.className}>
-              <p className="font-body text-[11px] tracking-[0.5em] uppercase text-gold mb-8">
-                Авторская флористика во французском стиле
-              </p>
-              <div className="w-12 h-[1px] bg-gold/60 mb-8" />
-            </div>
+    <section className="relative overflow-hidden min-h-[90vh] flex items-center">
+      {/* Full-width background image with dark overlay */}
+      <div className="absolute inset-0">
+        <img
+          src={heroImage}
+          alt="Премиальный букет роз"
+          className="w-full h-full object-cover"
+          width={1920}
+          height={1080}
+          onError={(e) => { (e.target as HTMLImageElement).src = '/placeholder.svg'; }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
+      </div>
 
-            <div ref={heading.ref} className={heading.className}>
-              <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-light text-foreground leading-[1.1] mb-6">
-                Розы, которые
-                <br />
-                <span className="italic text-primary">говорят за вас</span>
-              </h1>
-            </div>
-
-            <div ref={subtitle.ref} className={subtitle.className}>
-              <p className="font-heading text-xl md:text-2xl text-muted-foreground font-light mb-3">
-                Премиальная доставка роз по Москве и&nbsp;МО
-              </p>
-              <p className="font-body text-base text-muted-foreground/80 leading-relaxed mb-12">
-                Букеты, которые действительно производят впечатление
-              </p>
-            </div>
-
-            <div ref={button.ref} className={button.className}>
-              <Link
-                to="/catalog"
-                className="inline-block border border-gold/70 bg-transparent text-foreground font-body text-[11px] tracking-[0.3em] uppercase px-12 py-4 rounded-none hover:bg-gold hover:text-background transition-all duration-500"
-              >
-                Выбрать букет
-              </Link>
-            </div>
-
-            <div ref={trust.ref} className={trust.className}>
-              <p className="mt-14 font-body text-[11px] tracking-[0.15em] uppercase text-muted-foreground/60">
-                Фото перед отправкой{" "}
-                <span className="text-gold/50 mx-2">·</span>{" "}
-                Свежесть гарантирована{" "}
-                <span className="text-gold/50 mx-2">·</span>{" "}
-                Доставка от 2 часов
-              </p>
-            </div>
+      {/* Content */}
+      <div className="container mx-auto px-6 py-24 md:py-40 relative z-10">
+        <div className="max-w-2xl">
+          <div ref={label.ref} className={label.className}>
+            <p className="font-body text-[11px] tracking-[0.5em] uppercase text-gold mb-8">
+              Авторская флористика во французском стиле
+            </p>
+            <div className="w-12 h-[1px] bg-gold/60 mb-8" />
           </div>
 
-          {/* Image */}
-          <div ref={image.ref} className={image.className}>
-            <img
-              src={heroImage}
-              alt="Премиальный букет роз во французском стиле"
-              className="rounded-3xl shadow-2xl shadow-rose-light/30 w-full object-cover aspect-[3/4]"
-              width={900}
-              height={1200}
-              onError={(e) => { (e.target as HTMLImageElement).src = '/placeholder.svg'; }}
-            />
+          <div ref={heading.ref} className={heading.className}>
+            <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-light text-white leading-[1.1] mb-6">
+              Розы, которые
+              <br />
+              <span className="italic text-primary">говорят за вас</span>
+            </h1>
+          </div>
+
+          <div ref={subtitle.ref} className={subtitle.className}>
+            <p className="font-heading text-xl md:text-2xl text-white/80 font-light mb-3">
+              Премиальная доставка роз по Москве и&nbsp;МО
+            </p>
+            <p className="font-body text-base text-white/60 leading-relaxed mb-12">
+              Букеты, которые действительно производят впечатление
+            </p>
+          </div>
+
+          <div ref={button.ref} className={button.className}>
+            <Link
+              to="/catalog"
+              className="inline-block border border-gold bg-transparent text-white font-body text-[11px] tracking-[0.3em] uppercase px-12 py-4 rounded-none hover:bg-gold hover:text-background transition-all duration-500"
+            >
+              Выбрать букет
+            </Link>
+          </div>
+
+          <div ref={trust.ref} className={trust.className}>
+            <p className="mt-14 font-body text-[11px] tracking-[0.15em] uppercase text-white/50">
+              Фото перед отправкой{" "}
+              <span className="text-gold/50 mx-2">·</span>{" "}
+              Свежесть гарантирована{" "}
+              <span className="text-gold/50 mx-2">·</span>{" "}
+              Доставка от 2 часов
+            </p>
           </div>
         </div>
       </div>
