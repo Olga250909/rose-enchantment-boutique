@@ -93,6 +93,7 @@ const HeroSection = () => {
               className="rounded-3xl shadow-2xl shadow-rose-light/30 w-full object-cover aspect-[3/4]"
               width={900}
               height={1200}
+              onError={(e) => { (e.target as HTMLImageElement).src = '/placeholder.svg'; }}
             />
           </div>
         </div>

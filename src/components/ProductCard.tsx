@@ -13,7 +13,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div className="group">
       <Link to={`/product/${product.id}`} className="block">
-        <div className="relative overflow-hidden rounded-xl bg-muted aspect-[4/5] mb-4 transition-shadow duration-500 group-hover:shadow-lg group-hover:shadow-rose-light/20">
+        <div className="relative overflow-hidden rounded-sm bg-[#1a1a1a] aspect-[4/5] mb-4 transition-shadow duration-500 group-hover:shadow-lg group-hover:shadow-rose-light/20">
           <img
             src={product.image}
             alt={product.name}
@@ -22,7 +22,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             width={800}
             height={1000}
           />
-          <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10 group-hover:from-black/40 transition-colors duration-300" />
         </div>
       </Link>
       <div className="flex items-start justify-between gap-2">
@@ -33,11 +33,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
             </h3>
           </Link>
           <p className="text-xs text-muted-foreground font-body mt-1">{product.roses} роз · {product.category}</p>
-          <p className="text-foreground font-heading text-xl font-semibold mt-2">{product.price.toLocaleString("ru-RU")} ₽</p>
+          <p className="text-foreground font-heading text-xl font-semibold mt-2 tracking-wide">{product.price.toLocaleString("ru-RU")} ₽</p>
         </div>
         <button
           onClick={() => addToCart(product)}
-          className="mt-1 p-2.5 rounded-full bg-primary text-primary-foreground hover:bg-gold transition-colors flex-shrink-0"
+          className="mt-1 p-2.5 rounded-sm border border-gold/70 bg-transparent text-foreground hover:bg-gold hover:text-background transition-colors flex-shrink-0"
           aria-label="В корзину"
         >
           <ShoppingBag className="w-4 h-4" />
