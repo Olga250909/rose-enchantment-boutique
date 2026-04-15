@@ -8,7 +8,7 @@ const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-gold/20">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <Link to="/" className="font-heading text-3xl font-medium tracking-wide text-foreground">
           Магия Роз

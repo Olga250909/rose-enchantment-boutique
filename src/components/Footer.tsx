@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 const Footer = () => (
   <footer className="bg-card border-t border-border mt-20">
@@ -21,11 +22,11 @@ const Footer = () => (
         </div>
         <div>
           <h4 className="font-heading text-lg font-medium text-foreground mb-4">Контакты</h4>
-          <div className="text-sm font-body text-muted-foreground space-y-2">
-            <p>📞 +7(921) 314-74-08</p>
-            <p>✉️ hello@magiarose.ru</p>
-            <p>📍 Москва и МО</p>
-            <p>🕐 Ежедневно 8:00 — 22:00</p>
+          <div className="text-sm font-body text-muted-foreground space-y-3">
+            <p className="flex items-center gap-2"><Phone className="w-4 h-4 text-gold" /> +7(921) 314-74-08</p>
+            <p className="flex items-center gap-2"><Mail className="w-4 h-4 text-gold" /> hello@magiarose.ru</p>
+            <p className="flex items-center gap-2"><MapPin className="w-4 h-4 text-gold" /> Москва и МО</p>
+            <p className="flex items-center gap-2"><Clock className="w-4 h-4 text-gold" /> Ежедневно 8:00 — 22:00</p>
           </div>
         </div>
       </div>
