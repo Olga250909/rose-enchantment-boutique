@@ -1,32 +1,57 @@
-import { X, Plus, Minus, Trash2 } from "lucide-react";
+import { X, Plus, Minus, Trash2, CalendarIcon, Clock } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useStore } from "@/context/StoreContext";
 import { useState } from "react";
 import { toast } from "sonner";
+import { format } from "date-fns";
+import { ru } from "date-fns/locale";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+
+const formatPhone = (value: string) => {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  if (digits.length === 0) return "";
+  let formatted = "+7";
+  if (digits.length > 1) formatted += ` (${digits.slice(1, 4)}`;
+  if (digits.length > 4) formatted += `) ${digits.slice(4, 7)}`;
+  if (digits.length > 7) formatted += `-${digits.slice(7, 9)}`;
+  if (digits.length > 9) formatted += `-${digits.slice(9, 11)}`;
+  return formatted;
+};
+
+const timeSlots = ["10:00–12:00", "12:00–14:00", "14:00–16:00", "16:00–18:00", "18:00–20:00", "20:00–22:00"];
 
 const CartDrawer = () => {
   const { items, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity, totalPrice, clearCart } = useCart();
   const { addOrder } = useStore();
   const [checkout, setCheckout] = useState(false);
   const [form, setForm] = useState({ name: "", phone: "", address: "", comment: "" });
+  const [deliveryDate, setDeliveryDate] = useState<Date>();
+  const [deliveryTime, setDeliveryTime] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.phone.trim() || !form.address.trim()) {
+    if (!form.name.trim() || form.phone.replace(/\D/g, "").length < 11 || !form.address.trim()) {
       toast.error("Пожалуйста, заполните все обязательные поля");
       return;
     }
+    const dateComment = deliveryDate
+      ? `Доставка: ${format(deliveryDate, "d MMMM", { locale: ru })}${deliveryTime ? `, ${deliveryTime}` : ""}`
+      : "";
     addOrder({
       items: items.map(i => ({ product: i.product, quantity: i.quantity })),
       total: totalPrice,
       customerName: form.name,
       customerPhone: form.phone,
       customerAddress: form.address,
-      comment: form.comment,
+      comment: [form.comment, dateComment].filter(Boolean).join(". "),
     });
     clearCart();
     setCheckout(false);
     setForm({ name: "", phone: "", address: "", comment: "" });
+    setDeliveryDate(undefined);
+    setDeliveryTime("");
     toast.success("Заказ оформлен! Мы свяжемся с вами в ближайшее время.");
     setIsCartOpen(false);
   };
@@ -51,8 +76,8 @@ const CartDrawer = () => {
             ) : (
               <div className="space-y-4">
                 {items.map(item => (
-                  <div key={item.product.id} className="flex gap-4 p-3 rounded-lg bg-muted/50">
-                    <img src={item.product.image} alt={item.product.name} className="w-20 h-20 object-cover rounded-lg" />
+                  <div key={item.product.id} className="flex gap-4 p-3 rounded-sm bg-muted/50">
+                    <img src={item.product.image} alt={item.product.name} className="w-20 h-20 object-cover rounded-sm" />
                     <div className="flex-1 min-w-0">
                       <h4 className="font-heading text-sm font-medium truncate">{item.product.name}</h4>
                       <p className="text-foreground font-body text-sm font-semibold mt-1">
@@ -60,12 +85,12 @@ const CartDrawer = () => {
                       </p>
                       <div className="flex items-center gap-2 mt-2">
                         <button onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                          className="w-7 h-7 rounded-full border border-border flex items-center justify-center hover:bg-muted text-foreground">
+                          className="w-7 h-7 rounded-sm border border-border flex items-center justify-center hover:bg-muted text-foreground">
                           <Minus className="w-3 h-3" />
                         </button>
                         <span className="text-sm font-body w-6 text-center">{item.quantity}</span>
                         <button onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                          className="w-7 h-7 rounded-full border border-border flex items-center justify-center hover:bg-muted text-foreground">
+                          className="w-7 h-7 rounded-sm border border-border flex items-center justify-center hover:bg-muted text-foreground">
                           <Plus className="w-3 h-3" />
                         </button>
                         <button onClick={() => removeFromCart(item.product.id)}
@@ -81,24 +106,73 @@ const CartDrawer = () => {
           ) : (
             <form onSubmit={handleSubmit} id="checkout-form" className="space-y-4 font-body">
               <div>
-                <label className="text-sm text-muted-foreground">Ваше имя *</label>
+                <label className="text-xs text-muted-foreground uppercase tracking-wider">Ваше имя *</label>
                 <input value={form.name} onChange={e => setForm({...form, name: e.target.value})}
-                  className="w-full mt-1 px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:ring-1 focus:ring-primary outline-none" />
+                  className="w-full mt-1 px-4 py-3 border border-border bg-background text-foreground text-sm rounded-sm focus:ring-1 focus:ring-gold outline-none" />
               </div>
               <div>
-                <label className="text-sm text-muted-foreground">Телефон *</label>
-                <input value={form.phone} onChange={e => setForm({...form, phone: e.target.value})}
-                  className="w-full mt-1 px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:ring-1 focus:ring-primary outline-none" />
+                <label className="text-xs text-muted-foreground uppercase tracking-wider">Телефон *</label>
+                <input value={form.phone} onChange={e => setForm({...form, phone: formatPhone(e.target.value)})}
+                  placeholder="+7 (___) ___-__-__"
+                  className="w-full mt-1 px-4 py-3 border border-border bg-background text-foreground text-sm rounded-sm focus:ring-1 focus:ring-gold outline-none" />
               </div>
               <div>
-                <label className="text-sm text-muted-foreground">Адрес доставки *</label>
+                <label className="text-xs text-muted-foreground uppercase tracking-wider">Адрес доставки *</label>
                 <input value={form.address} onChange={e => setForm({...form, address: e.target.value})}
-                  className="w-full mt-1 px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:ring-1 focus:ring-primary outline-none" />
+                  className="w-full mt-1 px-4 py-3 border border-border bg-background text-foreground text-sm rounded-sm focus:ring-1 focus:ring-gold outline-none" />
               </div>
+
+              {/* Delivery date */}
               <div>
-                <label className="text-sm text-muted-foreground">Комментарий</label>
+                <label className="text-xs text-muted-foreground uppercase tracking-wider">Дата доставки</label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <button type="button" className={cn(
+                      "w-full mt-1 px-4 py-3 border border-border bg-background text-sm rounded-sm text-left flex items-center gap-2",
+                      !deliveryDate && "text-muted-foreground"
+                    )}>
+                      <CalendarIcon className="w-4 h-4 text-gold/60" />
+                      {deliveryDate ? format(deliveryDate, "d MMMM yyyy", { locale: ru }) : "Выберите дату"}
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={deliveryDate}
+                      onSelect={setDeliveryDate}
+                      disabled={(date) => date < new Date()}
+                      className={cn("p-3 pointer-events-auto")}
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
+
+              {/* Delivery time */}
+              <div>
+                <label className="text-xs text-muted-foreground uppercase tracking-wider">Время доставки</label>
+                <div className="grid grid-cols-2 gap-2 mt-1">
+                  {timeSlots.map(slot => (
+                    <button
+                      key={slot}
+                      type="button"
+                      onClick={() => setDeliveryTime(slot)}
+                      className={cn(
+                        "px-3 py-2 text-xs border rounded-sm transition-colors",
+                        deliveryTime === slot
+                          ? "border-gold bg-gold/10 text-foreground"
+                          : "border-border text-muted-foreground hover:border-gold/40"
+                      )}
+                    >
+                      {slot}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="text-xs text-muted-foreground uppercase tracking-wider">Комментарий</label>
                 <textarea value={form.comment} onChange={e => setForm({...form, comment: e.target.value})} rows={3}
-                  className="w-full mt-1 px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:ring-1 focus:ring-primary outline-none resize-none" />
+                  className="w-full mt-1 px-4 py-3 border border-border bg-background text-foreground text-sm rounded-sm focus:ring-1 focus:ring-gold outline-none resize-none" />
               </div>
             </form>
           )}
@@ -112,12 +186,12 @@ const CartDrawer = () => {
             </div>
             {!checkout ? (
               <button onClick={() => setCheckout(true)}
-                className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-body text-sm tracking-wider uppercase hover:bg-rose-dark transition-colors">
+                className="w-full border border-gold bg-gold/10 text-foreground py-3 rounded-sm font-body text-xs tracking-[0.2em] uppercase hover:bg-gold hover:text-background transition-all">
                 Оформить заказ
               </button>
             ) : (
               <button type="submit" form="checkout-form"
-                className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-body text-sm tracking-wider uppercase hover:bg-rose-dark transition-colors">
+                className="w-full border border-gold bg-gold/10 text-foreground py-3 rounded-sm font-body text-xs tracking-[0.2em] uppercase hover:bg-gold hover:text-background transition-all">
                 Подтвердить заказ
               </button>
             )}
