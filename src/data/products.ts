@@ -5,6 +5,7 @@ import productHeartRoses from "@/assets/product-heart-roses.png";
 import productFantasyBouquet from "@/assets/product-fantasy-bouquet.jpg";
 import productLavender from "@/assets/product-lavender.jpg";
 import productMixRoses from "@/assets/product-mix-roses.jpg";
+import productProvenceLuxe from "@/assets/product-provence-luxe.jpg";
 
 export interface Product {
   id: string;
@@ -103,5 +104,16 @@ export const initialProducts: Product[] = [
     inStock: true,
     roses: 15,
     badge: "Новинка",
+  },
+  {
+    id: "9",
+    name: "Прованс Люкс",
+    description: "Роскошная авторская композиция из 51 цветка: премиальные розы, пионовидные ранункулюсы, эустома и полевые акценты в дизайнерской упаковке Provence Lavande с шёлковой лентой.",
+    price: 45000,
+    image: productProvenceLuxe,
+    category: "Премиум",
+    inStock: true,
+    roses: 51,
+    badge: "Люкс",
   },
 ];
