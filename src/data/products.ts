@@ -1,4 +1,5 @@
 import productBlushBouquet from "@/assets/product-blush-bouquet.jpg";
+import productProvenceTenderness from "@/assets/product-provence-tenderness.jpg";
 import productWhiteBox from "@/assets/product-white-box.jpg";
 import productHeartRoses from "@/assets/product-heart-roses.png";
 import productFantasyBouquet from "@/assets/product-fantasy-bouquet.jpg";
@@ -23,7 +24,7 @@ export const initialProducts: Product[] = [
     name: "Нежность Прованса",
     description: "Букет из 15 пудровых роз в крафтовой упаковке с лентой из натурального шёлка. Идеальный подарок для романтического вечера.",
     price: 15000,
-    image: productBlushBouquet,
+    image: productProvenceTenderness,
     category: "Классические",
     inStock: true,
     roses: 15,
