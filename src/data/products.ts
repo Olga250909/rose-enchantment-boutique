@@ -6,6 +6,7 @@ import productFantasyBouquet from "@/assets/product-fantasy-bouquet.jpg";
 import productLavender from "@/assets/product-lavender.jpg";
 import productMixRoses from "@/assets/product-mix-roses.jpg";
 import productProvenceLuxe from "@/assets/product-provence-luxe.jpg";
+import productPinkProvence from "@/assets/product-pink-provence.jpg";
 
 export interface Product {
   id: string;
@@ -115,5 +116,16 @@ export const initialProducts: Product[] = [
     inStock: true,
     roses: 51,
     badge: "Люкс",
+  },
+  {
+    id: "10",
+    name: "Розовый Прованс",
+    description: "Изысканный букет из 25 нежно-розовых роз премиум-сорта в дизайнерской крафт-упаковке Fleurs de Provence с шёлковой лентой пудрового оттенка. Французская элегантность в каждой детали.",
+    price: 28000,
+    image: productPinkProvence,
+    category: "Классические",
+    inStock: true,
+    roses: 25,
+    badge: "Новинка",
   },
 ];
