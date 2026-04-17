@@ -7,6 +7,7 @@ import productLavender from "@/assets/product-lavender.jpg";
 import productMixRoses from "@/assets/product-mix-roses.jpg";
 import productProvenceLuxe from "@/assets/product-provence-luxe.jpg";
 import productPinkProvence from "@/assets/product-pink-provence.jpg";
+import productParisAtelier from "@/assets/product-paris-atelier.jpg";
 
 export interface Product {
   id: string;
@@ -126,6 +127,17 @@ export const initialProducts: Product[] = [
     category: "Классические",
     inStock: true,
     roses: 25,
+    badge: "Новинка",
+  },
+  {
+    id: "11",
+    name: "Парижский Ателье",
+    description: "Авторская композиция из 35 роз пастельных оттенков с лавандой и эвкалиптом в винтажной упаковке Atelier Floral Paris с шёлковой пудровой лентой. Атмосфера парижского цветочного бутика.",
+    price: 32000,
+    image: productParisAtelier,
+    category: "Авторские",
+    inStock: true,
+    roses: 35,
     badge: "Новинка",
   },
 ];
