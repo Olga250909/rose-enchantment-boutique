@@ -14,6 +14,7 @@ import productDriedPinkPampas from "@/assets/product-dried-pink-pampas.jpg";
 import productDriedCottonBox from "@/assets/product-dried-cotton-box.jpg";
 import productDriedPastelBox from "@/assets/product-dried-pastel-box.jpg";
 import productDriedCraftBouquet from "@/assets/product-dried-craft-bouquet.jpg";
+import productPampasChic from "@/assets/product-pampas-chic.jpg";
 
 export interface Product {
   id: string;
@@ -95,9 +96,9 @@ export const initialProducts: Product[] = [
   {
     id: "7",
     name: "Пампасный Шик",
-    description: "Стильная композиция из 19 сухоцветов: пампасная трава, лагурус и стабилизированные розы. Долговечная красота без воды.",
+    description: "Изысканная композиция из пампасной травы, лагуруса, сухих злаков и стабилизированных роз пастельно-розовой палитры в нежной упаковке Atelier Floral с шёлковой лентой. 19 элементов природной красоты без срока увядания.",
     price: 19000,
-    image: productLavender,
+    image: productPampasChic,
     category: "Сухоцветы",
     inStock: true,
     roses: 19,
