@@ -15,6 +15,7 @@ import productDriedCottonBox from "@/assets/product-dried-cotton-box.jpg";
 import productDriedPastelBox from "@/assets/product-dried-pastel-box.jpg";
 import productDriedCraftBouquet from "@/assets/product-dried-craft-bouquet.jpg";
 import productPampasChic from "@/assets/product-pampas-chic.jpg";
+import productDriedWaltz from "@/assets/product-dried-waltz.jpg";
 
 export interface Product {
   id: string;
@@ -106,9 +107,9 @@ export const initialProducts: Product[] = [
   {
     id: "8",
     name: "Сухоцветный Вальс",
-    description: "Нежный букет из 15 сухоцветов в пастельных тонах. Лаванда, хлопок и эвкалипт — природная гармония.",
+    description: "Роскошная композиция из пампасной травы, лагуруса, розовых и кремовых сухоцветов, гипсофилы и сухих злаков в нежно-персиковой упаковке с шёлковой лентой. Природная палитра в романтичном исполнении.",
     price: 17500,
-    image: productBlushBouquet,
+    image: productDriedWaltz,
     category: "Сухоцветы",
     inStock: true,
     roses: 15,
