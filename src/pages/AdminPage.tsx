@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Lock, LogOut, Package, ShoppingBag, Truck, MessageSquare } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Lock, LogOut, Package, ShoppingBag, Truck, MessageSquare, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { useStore } from "@/context/StoreContext";
 import { Badge } from "@/components/ui/badge";
@@ -71,11 +72,20 @@ const AdminPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-8 gap-4 flex-wrap">
         <h1 className="font-heading text-3xl md:text-4xl font-light text-foreground">Админ-панель</h1>
-        <button onClick={handleLogout} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground font-body transition-colors">
-          <LogOut className="w-4 h-4" /> Выйти
-        </button>
+        <div className="flex items-center gap-3">
+          <Link
+            to="/constructor"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-body border border-gold text-gold hover:bg-gold hover:text-primary-foreground transition-colors"
+          >
+            <Sparkles className="w-4 h-4" />
+            Магия Роз — Конструктор букета
+          </Link>
+          <button onClick={handleLogout} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground font-body transition-colors">
+            <LogOut className="w-4 h-4" /> Выйти
+          </button>
+        </div>
       </div>
 
       {/* Tabs */}
