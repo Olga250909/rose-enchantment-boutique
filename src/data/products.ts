@@ -9,6 +9,11 @@ import productProvenceLuxe from "@/assets/product-provence-luxe.jpg";
 import productPinkProvence from "@/assets/product-pink-provence.jpg";
 import productParisAtelier from "@/assets/product-paris-atelier.jpg";
 import productRoseVelvetBox from "@/assets/product-rose-velvet-box.jpg";
+import productDriedMimosa from "@/assets/product-dried-mimosa.jpg";
+import productDriedPinkPampas from "@/assets/product-dried-pink-pampas.jpg";
+import productDriedCottonBox from "@/assets/product-dried-cotton-box.jpg";
+import productDriedPastelBox from "@/assets/product-dried-pastel-box.jpg";
+import productDriedCraftBouquet from "@/assets/product-dried-craft-bouquet.jpg";
 
 export interface Product {
   id: string;
@@ -150,6 +155,60 @@ export const initialProducts: Product[] = [
     category: "Премиум",
     inStock: true,
     roses: 45,
+    badge: "Новинка",
+  },
+  {
+    id: "13",
+    name: "Солнечная Мимоза",
+    description: "Жизнерадостный букет из пушистой мимозы, сухих злаков и лагуруса в крафтовой упаковке. Солнечная палитра, которая сохранит весеннее настроение надолго.",
+    price: 14000,
+    image: productDriedMimosa,
+    category: "Сухоцветы",
+    inStock: true,
+    roses: 21,
+    badge: "Новинка",
+  },
+  {
+    id: "14",
+    name: "Розовая Дымка",
+    description: "Воздушная композиция из розовой пампасной травы, лагуруса и сухих злаков пастельных тонов. Романтика в природной палитре.",
+    price: 16500,
+    image: productDriedPinkPampas,
+    category: "Сухоцветы",
+    inStock: true,
+    roses: 19,
+  },
+  {
+    id: "15",
+    name: "Хлопковая Шкатулка",
+    description: "Уютная композиция в шляпной коробке: коробочки хлопка, эвкалипт, лаванда и сухие колоски. Долговечный подарок с природным шармом.",
+    price: 22000,
+    image: productDriedCottonBox,
+    category: "Сухоцветы",
+    inStock: true,
+    roses: 35,
+    badge: "Хит",
+  },
+  {
+    id: "16",
+    name: "Пастельный Сад",
+    description: "Премиальная композиция в розовой шляпной коробке: пампасная трава, гипсофила, лаванда, хлопок и стабилизированные розы пастельных оттенков. Изысканный декор интерьера.",
+    price: 24500,
+    image: productDriedPastelBox,
+    category: "Сухоцветы",
+    inStock: true,
+    roses: 41,
+    badge: "Премиум",
+  },
+  {
+    id: "17",
+    name: "Полевой Романс",
+    description: "Натуральный букет из полевых сухоцветов: лагурус, гипсофила, эвкалипт и сухие злаки в крафтовой упаковке с шёлковой лентой. Тёплая природная гармония.",
+    price: 15500,
+    image: productDriedCraftBouquet,
+    category: "Сухоцветы",
+    inStock: true,
+    roses: 25,
     badge: "Новинка",
   },
 ];
