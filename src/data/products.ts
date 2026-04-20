@@ -8,6 +8,7 @@ import productMixRoses from "@/assets/product-mix-roses.jpg";
 import productProvenceLuxe from "@/assets/product-provence-luxe.jpg";
 import productPinkProvence from "@/assets/product-pink-provence.jpg";
 import productParisAtelier from "@/assets/product-paris-atelier.jpg";
+import productRoseVelvetBox from "@/assets/product-rose-velvet-box.jpg";
 
 export interface Product {
   id: string;
@@ -138,6 +139,17 @@ export const initialProducts: Product[] = [
     category: "Авторские",
     inStock: true,
     roses: 35,
+    badge: "Новинка",
+  },
+  {
+    id: "12",
+    name: "Розовый Бархат",
+    description: "Роскошная композиция в бархатной шляпной коробке пудрового цвета: пионовидные розы персикового и кремового оттенков, розовые розы, белые герберы, вереск и эвкалипт. Перевязана шёлковой пудровой лентой.",
+    price: 38000,
+    image: productRoseVelvetBox,
+    category: "Премиум",
+    inStock: true,
+    roses: 45,
     badge: "Новинка",
   },
 ];
