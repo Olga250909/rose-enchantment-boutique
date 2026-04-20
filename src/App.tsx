@@ -14,6 +14,7 @@ import DeliveryPage from "./pages/DeliveryPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import OfferPage from "./pages/OfferPage";
 import AdminPage from "./pages/AdminPage";
+import ConstructorPage from "./pages/ConstructorPage";
 import NotFound from "./pages/NotFound";
 import ChatWidget from "./components/chat/ChatWidget";
 
@@ -37,6 +38,7 @@ const App = () => (
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/offer" element={<OfferPage />} />
                 <Route path="/admin" element={<AdminPage />} />
+                <Route path="/constructor" element={<ConstructorPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>

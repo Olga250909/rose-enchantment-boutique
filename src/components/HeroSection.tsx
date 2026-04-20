@@ -76,12 +76,18 @@ const HeroSection = () => {
             </p>
           </div>
 
-          <div ref={button.ref} className={button.className}>
+          <div ref={button.ref} className={`${button.className} flex flex-wrap gap-4`}>
             <Link
               to="/catalog"
               className="inline-block border border-gold bg-transparent text-white font-body text-[11px] tracking-[0.3em] uppercase px-12 py-4 rounded-none hover:bg-gold hover:text-background transition-all duration-500"
             >
               Выбрать букет
+            </Link>
+            <Link
+              to="/constructor"
+              className="inline-block border border-gold bg-gold text-background font-body text-[11px] tracking-[0.3em] uppercase px-12 py-4 rounded-none hover:bg-transparent hover:text-white transition-all duration-500"
+            >
+              Собери букет сам
             </Link>
           </div>
 
