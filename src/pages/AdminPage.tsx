@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Lock, LogOut, Package, ShoppingBag, Truck, MessageSquare, Sparkles } from "lucide-react";
+import { Lock, LogOut, Package, ShoppingBag, Truck, MessageSquare, Sparkles, PartyPopper } from "lucide-react";
 import { toast } from "sonner";
 import { useStore } from "@/context/StoreContext";
 import { Badge } from "@/components/ui/badge";
@@ -8,13 +8,14 @@ import OrdersTab from "@/components/admin/OrdersTab";
 import ProductsTab from "@/components/admin/ProductsTab";
 import DeliveryTab from "@/components/admin/DeliveryTab";
 import ChatsTab from "@/components/admin/ChatsTab";
+import DecorTab from "@/components/admin/DecorTab";
 
 const ADMIN_PASSWORD = "admin2024";
 
-type Tab = "orders" | "products" | "delivery" | "chats";
+type Tab = "orders" | "products" | "decor" | "delivery" | "chats";
 
 const AdminPage = () => {
-  const { orders, chatSessions } = useStore();
+  const { orders, chatSessions, decorServices } = useStore();
   const [isAuth, setIsAuth] = useState(() => sessionStorage.getItem("admin_auth") === "true");
   const [password, setPassword] = useState("");
   const [tab, setTab] = useState<Tab>("orders");
@@ -66,6 +67,7 @@ const AdminPage = () => {
   const tabs: { key: Tab; label: string; icon: React.ReactNode; count?: number }[] = [
     { key: "orders", label: "Заказы", icon: <Package className="w-4 h-4" />, count: orders.length },
     { key: "products", label: "Товары", icon: <ShoppingBag className="w-4 h-4" /> },
+    { key: "decor", label: "Оформление праздников", icon: <PartyPopper className="w-4 h-4" />, count: decorServices.length },
     { key: "delivery", label: "Доставка", icon: <Truck className="w-4 h-4" /> },
     { key: "chats", label: "Чаты", icon: <MessageSquare className="w-4 h-4" />, count: chatSessions.length },
   ];
@@ -112,6 +114,7 @@ const AdminPage = () => {
 
       {tab === "orders" && <OrdersTab />}
       {tab === "products" && <ProductsTab />}
+      {tab === "decor" && <DecorTab />}
       {tab === "delivery" && <DeliveryTab />}
       {tab === "chats" && <ChatsTab />}
     </div>
