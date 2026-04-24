@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
 import { Product, initialProducts } from "@/data/products";
+import { DecorService, initialDecorServices } from "@/data/decorServices";
 
 export interface Order {
   id: string;
@@ -53,9 +54,13 @@ interface StoreContextType {
   orders: Order[];
   deliverySettings: DeliverySettings;
   chatSessions: ChatSession[];
+  decorServices: DecorService[];
   addProduct: (product: Omit<Product, "id">) => void;
   updateProduct: (id: string, product: Partial<Product>) => void;
   deleteProduct: (id: string) => void;
+  addDecorService: (service: Omit<DecorService, "id">) => void;
+  updateDecorService: (id: string, service: Partial<DecorService>) => void;
+  deleteDecorService: (id: string) => void;
   addOrder: (order: Omit<Order, "id" | "createdAt" | "status">) => void;
   updateOrderStatus: (id: string, status: Order["status"]) => void;
   updateDeliverySettings: (settings: Partial<DeliverySettings>) => void;
@@ -71,6 +76,19 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [orders, setOrders] = useState<Order[]>([]);
   const [deliverySettings, setDeliverySettings] = useState<DeliverySettings>(defaultDeliverySettings);
   const [chatSessions, setChatSessions] = useState<ChatSession[]>([]);
+  const [decorServices, setDecorServices] = useState<DecorService[]>(initialDecorServices);
+
+  const addDecorService = useCallback((service: Omit<DecorService, "id">) => {
+    setDecorServices(prev => [...prev, { ...service, id: Date.now().toString() }]);
+  }, []);
+
+  const updateDecorService = useCallback((id: string, updates: Partial<DecorService>) => {
+    setDecorServices(prev => prev.map(s => s.id === id ? { ...s, ...updates } : s));
+  }, []);
+
+  const deleteDecorService = useCallback((id: string) => {
+    setDecorServices(prev => prev.filter(s => s.id !== id));
+  }, []);
 
   const addProduct = useCallback((product: Omit<Product, "id">) => {
     setProducts(prev => [...prev, { ...product, id: Date.now().toString() }]);
@@ -136,8 +154,9 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   return (
     <StoreContext.Provider value={{
-      products, orders, deliverySettings, chatSessions,
+      products, orders, deliverySettings, chatSessions, decorServices,
       addProduct, updateProduct, deleteProduct,
+      addDecorService, updateDecorService, deleteDecorService,
       addOrder, updateOrderStatus, updateDeliverySettings,
       addChatSession, addMessageToChat, createTicket,
     }}>
