@@ -15,6 +15,7 @@ const Footer = () => (
           <h4 className="font-heading text-lg font-medium text-foreground mb-4">Навигация</h4>
           <nav className="flex flex-col gap-2 text-sm font-body">
             <Link to="/catalog" className="text-muted-foreground hover:text-primary transition-colors">Каталог</Link>
+            <Link to="/decor" className="text-muted-foreground hover:text-primary transition-colors">Оформление праздников</Link>
             <Link to="/delivery" className="text-muted-foreground hover:text-primary transition-colors">Доставка и оплата</Link>
             <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">Политика конфиденциальности</Link>
             <Link to="/offer" className="text-muted-foreground hover:text-primary transition-colors">Публичная оферта</Link>

@@ -15,6 +15,7 @@ import PrivacyPage from "./pages/PrivacyPage";
 import OfferPage from "./pages/OfferPage";
 import AdminPage from "./pages/AdminPage";
 import ConstructorPage from "./pages/ConstructorPage";
+import DecorPage from "./pages/DecorPage";
 import NotFound from "./pages/NotFound";
 import ChatWidget from "./components/chat/ChatWidget";
 
@@ -39,6 +40,7 @@ const App = () => (
                 <Route path="/offer" element={<OfferPage />} />
                 <Route path="/admin" element={<AdminPage />} />
                 <Route path="/constructor" element={<ConstructorPage />} />
+                <Route path="/decor" element={<DecorPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>

@@ -18,6 +18,7 @@ const Header = () => {
           <Link to="/" className="text-muted-foreground hover:text-primary transition-colors story-link">Главная</Link>
           <Link to="/catalog" className="text-muted-foreground hover:text-primary transition-colors story-link">Каталог</Link>
           <Link to="/constructor" className="text-gold hover:text-primary transition-colors story-link">Конструктор</Link>
+          <Link to="/decor" className="text-muted-foreground hover:text-primary transition-colors story-link">Оформление</Link>
           <Link to="/delivery" className="text-muted-foreground hover:text-primary transition-colors story-link">Доставка</Link>
         </nav>
 
@@ -48,6 +49,7 @@ const Header = () => {
             <Link to="/" onClick={() => setMobileOpen(false)} className="text-muted-foreground hover:text-primary py-2">Главная</Link>
             <Link to="/catalog" onClick={() => setMobileOpen(false)} className="text-muted-foreground hover:text-primary py-2">Каталог</Link>
             <Link to="/constructor" onClick={() => setMobileOpen(false)} className="text-gold hover:text-primary py-2">Конструктор</Link>
+            <Link to="/decor" onClick={() => setMobileOpen(false)} className="text-muted-foreground hover:text-primary py-2">Оформление</Link>
             <Link to="/delivery" onClick={() => setMobileOpen(false)} className="text-muted-foreground hover:text-primary py-2">Доставка</Link>
           </nav>
         </div>
