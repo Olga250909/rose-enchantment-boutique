@@ -8,6 +8,7 @@ export interface DecorService {
   price: number;
   category: string;
   image: string;
+  gallery?: string[];
 }
 
 export const decorCategories = ["Свадьбы", "Юбилеи", "Корпоративы", "Детские праздники"];
@@ -21,6 +22,7 @@ export const initialDecorServices: DecorService[] = [
     price: 85000,
     category: "Свадьбы",
     image: decorArchWhite,
+    gallery: [decorArchWhite, decorArchPastel],
   },
   {
     id: "decor-2",
@@ -30,5 +32,16 @@ export const initialDecorServices: DecorService[] = [
     price: 95000,
     category: "Свадьбы",
     image: decorArchPastel,
+    gallery: [decorArchPastel, decorArchWhite],
+  },
+  {
+    id: "decor-3",
+    name: "Романтическая фотозона «Облако роз»",
+    description:
+      "Уютная фотозона из живых роз, гипсофилы и пышной зелени для свадебной церемонии, выездной регистрации или семейного торжества. Подбираем палитру под ваш стиль и сочетаем с декоративным освещением.",
+    price: 65000,
+    category: "Свадьбы",
+    image: decorArchWhite,
+    gallery: [decorArchWhite, decorArchPastel],
   },
 ];

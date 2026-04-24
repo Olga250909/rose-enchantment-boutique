@@ -8,13 +8,15 @@ interface DecorCardProps {
 
 const DecorCard = ({ service }: DecorCardProps) => {
   const [open, setOpen] = useState(false);
+  const allImages = [service.image, ...(service.gallery?.filter(g => g !== service.image) ?? [])];
+  const [activeImage, setActiveImage] = useState(service.image);
 
   return (
     <>
       <div className="group flex flex-col">
-        <div className="relative overflow-hidden rounded-sm bg-[#1a1a1a] aspect-[4/5] mb-4 transition-shadow duration-500 group-hover:shadow-lg group-hover:shadow-rose-light/20">
+        <div className="relative overflow-hidden rounded-sm bg-[#1a1a1a] aspect-[4/5] mb-3 transition-shadow duration-500 group-hover:shadow-lg group-hover:shadow-rose-light/20">
           <img
-            src={service.image}
+            src={activeImage}
             alt={service.name}
             loading="lazy"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -26,6 +28,25 @@ const DecorCard = ({ service }: DecorCardProps) => {
             {service.category}
           </span>
         </div>
+
+        {allImages.length > 1 && (
+          <div className="flex gap-2 mb-4">
+            {allImages.slice(0, 4).map((img, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setActiveImage(img)}
+                className={`relative w-16 h-16 overflow-hidden rounded-sm border transition-all ${
+                  activeImage === img ? "border-gold" : "border-gold/20 hover:border-gold/60"
+                }`}
+                aria-label={`Фото ${idx + 1}`}
+              >
+                <img src={img} alt="" className="w-full h-full object-cover" loading="lazy" />
+              </button>
+            ))}
+          </div>
+        )}
+
         <h3 className="font-heading text-lg font-medium text-foreground">{service.name}</h3>
         <p className="text-sm text-muted-foreground font-body mt-2 leading-relaxed flex-1">
           {service.description}
