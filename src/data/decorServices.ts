@@ -6,6 +6,7 @@ import decorEntrance1 from "@/assets/decor-entrance-roses-1.jpg";
 import decorEntrance2 from "@/assets/decor-entrance-roses-2.jpg";
 import decorEntrance3 from "@/assets/decor-entrance-roses-3.jpg";
 import decorEntrance4 from "@/assets/decor-entrance-roses-4.jpg";
+import decorEntranceParisPremium from "@/assets/decor-entrance-paris-premium.jpg";
 
 export interface DecorService {
   id: string;
@@ -109,5 +110,15 @@ export const initialDecorServices: DecorService[] = [
     category: "Офисы, салоны, шоурумы",
     image: decorEntrance4,
     gallery: [decorEntrance4, decorEntrance1, decorEntrance2, decorEntrance3],
+  },
+  {
+    id: "decor-10",
+    name: "Премиум-оформление входной группы «Парижский бутик»",
+    description:
+      "Масштабное флористическое оформление входа бутика, салона или флагманского шоурума: парные колонны из премиальных роз, каскады зелени, декоративная подсветка и оформление витрин. Полный цикл — от концепции до монтажа и демонтажа.",
+    price: 350000,
+    category: "Офисы, салоны, шоурумы",
+    image: decorEntranceParisPremium,
+    gallery: [decorEntranceParisPremium, decorEntrance1, decorEntrance2, decorEntrance3, decorEntrance4],
   },
 ];
