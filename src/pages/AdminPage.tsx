@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Lock, LogOut, Package, ShoppingBag, Truck, MessageSquare, Sparkles, PartyPopper } from "lucide-react";
+import { Lock, LogOut, Package, ShoppingBag, Truck, MessageSquare, Sparkles, PartyPopper, ClipboardList } from "lucide-react";
 import { toast } from "sonner";
 import { useStore } from "@/context/StoreContext";
 import { Badge } from "@/components/ui/badge";
@@ -9,18 +9,20 @@ import ProductsTab from "@/components/admin/ProductsTab";
 import DeliveryTab from "@/components/admin/DeliveryTab";
 import ChatsTab from "@/components/admin/ChatsTab";
 import DecorTab from "@/components/admin/DecorTab";
+import DecorRequestsTab from "@/components/admin/DecorRequestsTab";
 
 const ADMIN_PASSWORD = "admin2024";
 
-type Tab = "orders" | "products" | "decor" | "delivery" | "chats";
+type Tab = "orders" | "products" | "decor" | "requests" | "delivery" | "chats";
 
 const AdminPage = () => {
-  const { orders, chatSessions, decorServices } = useStore();
+  const { orders, chatSessions, decorServices, decorRequests } = useStore();
   const [isAuth, setIsAuth] = useState(() => sessionStorage.getItem("admin_auth") === "true");
   const [password, setPassword] = useState("");
   const [tab, setTab] = useState<Tab>("orders");
 
   const newCount = orders.filter(o => o.status === "new").length;
+  const newRequestsCount = decorRequests.filter(r => r.status === "new").length;
   const ticketCount = chatSessions.filter(s => s.hasTicket).length;
   const handleLogin = () => {
     if (password === ADMIN_PASSWORD) {
@@ -68,6 +70,7 @@ const AdminPage = () => {
     { key: "orders", label: "Заказы", icon: <Package className="w-4 h-4" />, count: orders.length },
     { key: "products", label: "Товары", icon: <ShoppingBag className="w-4 h-4" /> },
     { key: "decor", label: "Оформление праздников", icon: <PartyPopper className="w-4 h-4" />, count: decorServices.length },
+    { key: "requests", label: "Заявки", icon: <ClipboardList className="w-4 h-4" />, count: decorRequests.length },
     { key: "delivery", label: "Доставка", icon: <Truck className="w-4 h-4" /> },
     { key: "chats", label: "Чаты", icon: <MessageSquare className="w-4 h-4" />, count: chatSessions.length },
   ];
@@ -105,6 +108,9 @@ const AdminPage = () => {
             {t.key === "orders" && newCount > 0 && (
               <Badge className="bg-destructive text-destructive-foreground text-[10px] px-1.5 py-0">{newCount}</Badge>
             )}
+            {t.key === "requests" && newRequestsCount > 0 && (
+              <Badge className="bg-destructive text-destructive-foreground text-[10px] px-1.5 py-0">{newRequestsCount}</Badge>
+            )}
             {t.key === "chats" && ticketCount > 0 && (
               <Badge className="bg-destructive text-destructive-foreground text-[10px] px-1.5 py-0">{ticketCount}</Badge>
             )}
@@ -115,6 +121,7 @@ const AdminPage = () => {
       {tab === "orders" && <OrdersTab />}
       {tab === "products" && <ProductsTab />}
       {tab === "decor" && <DecorTab />}
+      {tab === "requests" && <DecorRequestsTab />}
       {tab === "delivery" && <DeliveryTab />}
       {tab === "chats" && <ChatsTab />}
     </div>
