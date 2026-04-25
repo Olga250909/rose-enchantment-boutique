@@ -17,7 +17,7 @@ export interface DecorService {
   gallery?: string[];
 }
 
-export const decorCategories = ["Свадьбы", "Юбилеи", "Корпоративы", "Детские праздники"];
+export const decorCategories = ["Свадьбы", "Офисы, салоны, шоурумы", "Юбилеи", "Корпоративы", "Детские праздники"];
 
 export const initialDecorServices: DecorService[] = [
   {
