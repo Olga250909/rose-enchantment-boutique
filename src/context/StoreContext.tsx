@@ -93,6 +93,20 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [deliverySettings, setDeliverySettings] = useState<DeliverySettings>(defaultDeliverySettings);
   const [chatSessions, setChatSessions] = useState<ChatSession[]>([]);
   const [decorServices, setDecorServices] = useState<DecorService[]>(initialDecorServices);
+  const [decorRequests, setDecorRequests] = useState<DecorRequest[]>([]);
+
+  const addDecorRequest = useCallback((req: Omit<DecorRequest, "id" | "createdAt" | "status">) => {
+    setDecorRequests(prev => [...prev, {
+      ...req,
+      id: Date.now().toString(),
+      createdAt: new Date().toLocaleString("ru-RU"),
+      status: "new",
+    }]);
+  }, []);
+
+  const updateDecorRequestStatus = useCallback((id: string, status: DecorRequest["status"]) => {
+    setDecorRequests(prev => prev.map(r => r.id === id ? { ...r, status } : r));
+  }, []);
 
   const addDecorService = useCallback((service: Omit<DecorService, "id">) => {
     setDecorServices(prev => [...prev, { ...service, id: Date.now().toString() }]);
@@ -170,10 +184,11 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   return (
     <StoreContext.Provider value={{
-      products, orders, deliverySettings, chatSessions, decorServices,
+      products, orders, deliverySettings, chatSessions, decorServices, decorRequests,
       addProduct, updateProduct, deleteProduct,
       addDecorService, updateDecorService, deleteDecorService,
       addOrder, updateOrderStatus, updateDeliverySettings,
+      addDecorRequest, updateDecorRequestStatus,
       addChatSession, addMessageToChat, createTicket,
     }}>
       {children}

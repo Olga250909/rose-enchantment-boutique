@@ -21,7 +21,7 @@ const formatPhone = (value: string) => {
 };
 
 const DecorRequestModal = ({ service, onClose }: DecorRequestModalProps) => {
-  const { addOrder } = useStore();
+  const { addDecorRequest } = useStore();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [date, setDate] = useState("");
@@ -33,24 +33,14 @@ const DecorRequestModal = ({ service, onClose }: DecorRequestModalProps) => {
       toast.error("Заполните имя и телефон");
       return;
     }
-    addOrder({
-      items: [{
-        product: {
-          id: service.id,
-          name: service.name,
-          price: service.price,
-          image: service.image,
-          category: service.category,
-          description: service.description,
-          roses: 0,
-        } as any,
-        quantity: 1,
-      }],
-      total: service.price,
+    addDecorRequest({
+      serviceId: service.id,
+      serviceName: service.name,
+      servicePrice: service.price,
       customerName: name,
       customerPhone: phone,
-      customerAddress: "Уточнить при звонке",
-      comment: `Услуга оформления: ${service.name}${date ? ` · Дата мероприятия: ${date}` : ""}${comment.trim() ? ` · ${comment.trim()}` : ""}`,
+      eventDate: date,
+      comment: comment.trim(),
     });
     toast.success("Заявка принята! Мы свяжемся с вами в ближайшее время.");
     onClose();
