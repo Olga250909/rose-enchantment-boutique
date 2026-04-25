@@ -39,6 +39,19 @@ export interface ChatSession {
   createdAt: string;
 }
 
+export interface DecorRequest {
+  id: string;
+  serviceId: string;
+  serviceName: string;
+  servicePrice: number;
+  customerName: string;
+  customerPhone: string;
+  eventDate: string;
+  comment: string;
+  createdAt: string;
+  status: "new" | "processing" | "completed";
+}
+
 const defaultDeliverySettings: DeliverySettings = {
   freeDeliveryFrom: 15000,
   deliveryCost: 1500,
@@ -55,6 +68,7 @@ interface StoreContextType {
   deliverySettings: DeliverySettings;
   chatSessions: ChatSession[];
   decorServices: DecorService[];
+  decorRequests: DecorRequest[];
   addProduct: (product: Omit<Product, "id">) => void;
   updateProduct: (id: string, product: Partial<Product>) => void;
   deleteProduct: (id: string) => void;
@@ -63,6 +77,8 @@ interface StoreContextType {
   deleteDecorService: (id: string) => void;
   addOrder: (order: Omit<Order, "id" | "createdAt" | "status">) => void;
   updateOrderStatus: (id: string, status: Order["status"]) => void;
+  addDecorRequest: (req: Omit<DecorRequest, "id" | "createdAt" | "status">) => void;
+  updateDecorRequestStatus: (id: string, status: DecorRequest["status"]) => void;
   updateDeliverySettings: (settings: Partial<DeliverySettings>) => void;
   addChatSession: (name: string, phone: string) => string;
   addMessageToChat: (sessionId: string, message: ChatMessage) => void;
