@@ -6,6 +6,7 @@ import decorEntrance1 from "@/assets/decor-entrance-roses-1.jpg";
 import decorEntrance2 from "@/assets/decor-entrance-roses-2.jpg";
 import decorEntrance3 from "@/assets/decor-entrance-roses-3.jpg";
 import decorEntrance4 from "@/assets/decor-entrance-roses-4.jpg";
+import decorEntranceParisPremium from "@/assets/decor-entrance-paris-premium.jpg";
 
 export interface DecorService {
   id: string;
