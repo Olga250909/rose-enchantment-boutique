@@ -2,6 +2,10 @@ import decorArchWhite from "@/assets/decor-arch-white.jpg";
 import decorArchPastel from "@/assets/decor-arch-pastel.jpg";
 import decorTablePinkRoses from "@/assets/decor-table-pink-roses.jpg";
 import decorTableWhiteRoses from "@/assets/decor-table-white-roses.jpg";
+import decorEntrance1 from "@/assets/decor-entrance-roses-1.jpg";
+import decorEntrance2 from "@/assets/decor-entrance-roses-2.jpg";
+import decorEntrance3 from "@/assets/decor-entrance-roses-3.jpg";
+import decorEntrance4 from "@/assets/decor-entrance-roses-4.jpg";
 
 export interface DecorService {
   id: string;
