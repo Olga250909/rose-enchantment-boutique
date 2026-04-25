@@ -1,5 +1,7 @@
 import decorArchWhite from "@/assets/decor-arch-white.jpg";
 import decorArchPastel from "@/assets/decor-arch-pastel.jpg";
+import decorTablePinkRoses from "@/assets/decor-table-pink-roses.jpg";
+import decorTableWhiteRoses from "@/assets/decor-table-white-roses.jpg";
 
 export interface DecorService {
   id: string;
@@ -43,5 +45,25 @@ export const initialDecorServices: DecorService[] = [
     category: "Свадьбы",
     image: decorArchWhite,
     gallery: [decorArchWhite, decorArchPastel],
+  },
+  {
+    id: "decor-4",
+    name: "Цветочная композиция на стол молодожёнов «Пудровые розы»",
+    description:
+      "Длинная флористическая композиция из пудрово-розовых роз, облака гипсофилы и свежего эвкалипта для президиума молодожёнов. Свечи и сервировка подбираются под стиль свадьбы.",
+    price: 45000,
+    category: "Свадьбы",
+    image: decorTablePinkRoses,
+    gallery: [decorTablePinkRoses, decorTableWhiteRoses],
+  },
+  {
+    id: "decor-5",
+    name: "Цветочная композиция на стол молодожёнов «Белоснежные розы»",
+    description:
+      "Торжественная белая композиция из крупных роз и пышного облака гипсофилы с зеленью для свадебного президиума. Создаёт лёгкий, воздушный и аристократичный образ торжества.",
+    price: 48000,
+    category: "Свадьбы",
+    image: decorTableWhiteRoses,
+    gallery: [decorTableWhiteRoses, decorTablePinkRoses],
   },
 ];
