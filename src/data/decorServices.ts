@@ -111,4 +111,14 @@ export const initialDecorServices: DecorService[] = [
     image: decorEntrance4,
     gallery: [decorEntrance4, decorEntrance1, decorEntrance2, decorEntrance3],
   },
+  {
+    id: "decor-10",
+    name: "Премиум-оформление входной группы «Парижский бутик»",
+    description:
+      "Масштабное флористическое оформление входа бутика, салона или флагманского шоурума: парные колонны из премиальных роз, каскады зелени, декоративная подсветка и оформление витрин. Полный цикл — от концепции до монтажа и демонтажа.",
+    price: 350000,
+    category: "Офисы, салоны, шоурумы",
+    image: decorEntranceParisPremium,
+    gallery: [decorEntranceParisPremium, decorEntrance1, decorEntrance2, decorEntrance3, decorEntrance4],
+  },
 ];
