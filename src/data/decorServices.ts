@@ -2,6 +2,10 @@ import decorArchWhite from "@/assets/decor-arch-white.jpg";
 import decorArchPastel from "@/assets/decor-arch-pastel.jpg";
 import decorTablePinkRoses from "@/assets/decor-table-pink-roses.jpg";
 import decorTableWhiteRoses from "@/assets/decor-table-white-roses.jpg";
+import decorEntrance1 from "@/assets/decor-entrance-roses-1.jpg";
+import decorEntrance2 from "@/assets/decor-entrance-roses-2.jpg";
+import decorEntrance3 from "@/assets/decor-entrance-roses-3.jpg";
+import decorEntrance4 from "@/assets/decor-entrance-roses-4.jpg";
 
 export interface DecorService {
   id: string;
@@ -13,7 +17,7 @@ export interface DecorService {
   gallery?: string[];
 }
 
-export const decorCategories = ["Свадьбы", "Юбилеи", "Корпоративы", "Детские праздники"];
+export const decorCategories = ["Свадьбы", "Офисы, салоны, шоурумы", "Юбилеи", "Корпоративы", "Детские праздники"];
 
 export const initialDecorServices: DecorService[] = [
   {
@@ -65,5 +69,45 @@ export const initialDecorServices: DecorService[] = [
     category: "Свадьбы",
     image: decorTableWhiteRoses,
     gallery: [decorTableWhiteRoses, decorTablePinkRoses],
+  },
+  {
+    id: "decor-6",
+    name: "Цветочные колонны у входа «Розовый бутик»",
+    description:
+      "Парные флористические колонны из пудрово-розовых и кремовых роз с облаком гипсофилы и свежей зеленью. Создают торжественную входную группу для салона красоты, бутика или шоурума.",
+    price: 75000,
+    category: "Офисы, салоны, шоурумы",
+    image: decorEntrance1,
+    gallery: [decorEntrance1, decorEntrance2, decorEntrance3, decorEntrance4],
+  },
+  {
+    id: "decor-7",
+    name: "Арка-портал «Цветущий вход»",
+    description:
+      "Каскад роз и зелени, обрамляющий стеклянные двери офиса или шоурума. Эффектное оформление для открытия, презентации новой коллекции или брендового мероприятия.",
+    price: 90000,
+    category: "Офисы, салоны, шоурумы",
+    image: decorEntrance2,
+    gallery: [decorEntrance2, decorEntrance1, decorEntrance3, decorEntrance4],
+  },
+  {
+    id: "decor-8",
+    name: "Композиция входной группы «Сияние»",
+    description:
+      "Пышные пастельные розы с декоративной подсветкой и свежей зеленью у входа. Подчёркивает премиальный статус салона и встречает гостей атмосферой праздника.",
+    price: 85000,
+    category: "Офисы, салоны, шоурумы",
+    image: decorEntrance3,
+    gallery: [decorEntrance3, decorEntrance1, decorEntrance2, decorEntrance4],
+  },
+  {
+    id: "decor-9",
+    name: "Флористическое оформление шоурума «Утренний свет»",
+    description:
+      "Нежные пастельные розы и полевые цветы в воздушной композиции для дневного оформления шоурума или офиса. Лёгкий, светлый образ для презентаций и фотосъёмок.",
+    price: 70000,
+    category: "Офисы, салоны, шоурумы",
+    image: decorEntrance4,
+    gallery: [decorEntrance4, decorEntrance1, decorEntrance2, decorEntrance3],
   },
 ];
