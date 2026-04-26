@@ -7,6 +7,8 @@ import decorEntrance2 from "@/assets/decor-entrance-roses-2.jpg";
 import decorEntrance3 from "@/assets/decor-entrance-roses-3.jpg";
 import decorEntrance4 from "@/assets/decor-entrance-roses-4.jpg";
 import decorEntranceParisPremium from "@/assets/decor-entrance-paris-premium.jpg";
+import decorBalloonsRedGold from "@/assets/decor-balloons-red-gold.jpg";
+import decorBalloonsBlueSilver from "@/assets/decor-balloons-blue-silver.jpg";
 
 export interface DecorService {
   id: string;
@@ -18,7 +20,7 @@ export interface DecorService {
   gallery?: string[];
 }
 
-export const decorCategories = ["Свадьбы", "Офисы, салоны, шоурумы", "Юбилеи", "Корпоративы", "Детские праздники"];
+export const decorCategories = ["Свадьбы", "Офисы, салоны, шоурумы", "Юбилеи", "Корпоративы", "Детские праздники", "Шары"];
 
 export const initialDecorServices: DecorService[] = [
   {
@@ -120,5 +122,25 @@ export const initialDecorServices: DecorService[] = [
     category: "Офисы, салоны, шоурумы",
     image: decorEntranceParisPremium,
     gallery: [decorEntranceParisPremium, decorEntrance1, decorEntrance2, decorEntrance3, decorEntrance4],
+  },
+  {
+    id: "decor-11",
+    name: "Арка из шаров «Красно-золотой бутик»",
+    description:
+      "Премиальная арка из металлизированных красных и золотых шаров с конфетти-шарами для оформления входной группы бутика, шоурума или торжества. Монтаж и демонтаж включены.",
+    price: 75000,
+    category: "Шары",
+    image: decorBalloonsRedGold,
+    gallery: [decorBalloonsRedGold, decorBalloonsBlueSilver],
+  },
+  {
+    id: "decor-12",
+    name: "Арка из шаров «Сапфировый блеск»",
+    description:
+      "Эффектная арка из синих и серебряных хром-шаров с серебряными бантами и конфетти-акцентами. Идеально для презентаций, открытий и корпоративных мероприятий.",
+    price: 85000,
+    category: "Шары",
+    image: decorBalloonsBlueSilver,
+    gallery: [decorBalloonsBlueSilver, decorBalloonsRedGold],
   },
 ];
