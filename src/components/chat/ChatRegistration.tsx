@@ -61,6 +61,13 @@ const ChatRegistration = ({ onRegistered }: Props) => {
           rows={4}
           className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-sm font-body min-h-[120px] resize-none focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all"
         />
+        <button
+          onClick={handleSubmit}
+          disabled={!canSubmit}
+          className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-body text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Начать чат
+        </button>
         <p className="text-xs text-muted-foreground text-center font-body">
           Нажимая кнопку, вы соглашаетесь с{" "}
           <a
@@ -71,13 +78,6 @@ const ChatRegistration = ({ onRegistered }: Props) => {
             политикой конфиденциальности
           </a>
         </p>
-        <button
-          onClick={handleSubmit}
-          disabled={!canSubmit}
-          className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-body text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          Начать чат
-        </button>
       </div>
     </div>
   );
