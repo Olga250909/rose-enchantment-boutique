@@ -12,7 +12,7 @@ const ChatRegistration = ({ onRegistered }: Props) => {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
-  const canSubmit = name.trim().length > 0 && message.trim().length > 0;
+  
 
   const handleSubmit = () => {
     const trimmedName = name.trim();
@@ -63,8 +63,7 @@ const ChatRegistration = ({ onRegistered }: Props) => {
         />
         <button
           onClick={handleSubmit}
-          disabled={!canSubmit}
-          className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-body text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-body text-sm font-medium hover:opacity-90 transition-opacity"
         >
           Начать чат
         </button>
