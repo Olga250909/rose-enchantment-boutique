@@ -184,18 +184,6 @@ const ChatWindow = ({ sessionId }: Props) => {
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
-        {/* Welcome message */}
-        {messages.length === 0 && (
-          <div className="flex gap-2">
-            <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-              <Bot className="w-4 h-4 text-primary" />
-            </div>
-            <div className="bg-muted rounded-xl rounded-tl-sm px-3 py-2 text-sm font-body text-foreground max-w-[85%]">
-              Здравствуйте, {session?.customerName}! Я Алиса, ваш персональный флорист-консультант 🌹 Чем могу помочь?
-            </div>
-          </div>
-        )}
-
         {messages.map(msg => (
           <div key={msg.id} className={`flex gap-2 ${msg.role === "user" ? "justify-end" : ""}`}>
             {msg.role === "assistant" && (
