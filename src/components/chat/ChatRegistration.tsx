@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
 import { toast } from "sonner";
@@ -8,11 +8,14 @@ interface Props {
 }
 
 const ChatRegistration = ({ onRegistered }: Props) => {
-  const { addChatSession, addMessageToChat } = useStore();
+  const { addChatSession, addMessageToChat, consumeChatPrefill } = useStore();
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
-  
+  useEffect(() => {
+    const prefill = consumeChatPrefill();
+    if (prefill) setMessage(prefill);
+  }, [consumeChatPrefill]);
 
   const handleSubmit = () => {
     const trimmedName = name.trim();
