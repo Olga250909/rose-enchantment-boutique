@@ -83,6 +83,11 @@ interface StoreContextType {
   addChatSession: (name: string, phone: string) => string;
   addMessageToChat: (sessionId: string, message: ChatMessage) => void;
   createTicket: (sessionId: string) => void;
+  chatOpen: boolean;
+  chatPrefill: string | null;
+  openChat: (prefill?: string) => void;
+  closeChat: () => void;
+  consumeChatPrefill: () => string | null;
 }
 
 const StoreContext = createContext<StoreContextType | undefined>(undefined);
@@ -94,6 +99,21 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [chatSessions, setChatSessions] = useState<ChatSession[]>([]);
   const [decorServices, setDecorServices] = useState<DecorService[]>(initialDecorServices);
   const [decorRequests, setDecorRequests] = useState<DecorRequest[]>([]);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatPrefill, setChatPrefill] = useState<string | null>(null);
+
+  const openChat = useCallback((prefill?: string) => {
+    if (prefill) setChatPrefill(prefill);
+    setChatOpen(true);
+  }, []);
+
+  const closeChat = useCallback(() => setChatOpen(false), []);
+
+  const consumeChatPrefill = useCallback(() => {
+    const value = chatPrefill;
+    setChatPrefill(null);
+    return value;
+  }, [chatPrefill]);
 
   const addDecorRequest = useCallback((req: Omit<DecorRequest, "id" | "createdAt" | "status">) => {
     setDecorRequests(prev => [...prev, {
