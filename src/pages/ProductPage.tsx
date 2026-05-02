@@ -1,17 +1,14 @@
 import { useParams, Link } from "react-router-dom";
 import { useStore } from "@/context/StoreContext";
 import { useCart } from "@/context/CartContext";
-import { ShoppingBag, ArrowLeft, Zap } from "lucide-react";
+import { ShoppingBag, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
-import { useState } from "react";
-import QuickOrderModal from "@/components/QuickOrderModal";
 
 const ProductPage = () => {
   const { id } = useParams();
   const { products } = useStore();
   const { addToCart } = useCart();
   const product = products.find(p => p.id === id);
-  const [quickOrder, setQuickOrder] = useState(false);
 
   if (!product) {
     return (
@@ -50,25 +47,15 @@ const ProductPage = () => {
             <span className="font-heading text-3xl text-foreground tracking-wide">{product.price.toLocaleString("ru-RU")} ₽</span>
           </div>
           <p className="text-sm text-muted-foreground font-body mb-8">{product.roses} роз в букете</p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <button
-              onClick={handleAddToCart}
-              className="inline-flex items-center justify-center gap-3 border border-gold/70 bg-transparent text-foreground font-body text-sm tracking-wider uppercase px-8 py-4 rounded-sm hover:bg-gold hover:text-background transition-colors flex-1"
-            >
-              <ShoppingBag className="w-4 h-4" />
-              В корзину
-            </button>
-            <button
-              onClick={() => setQuickOrder(true)}
-              className="inline-flex items-center justify-center gap-3 border border-primary/70 bg-primary/10 text-primary font-body text-sm tracking-wider uppercase px-8 py-4 rounded-sm hover:bg-primary hover:text-primary-foreground transition-colors flex-1"
-            >
-              <Zap className="w-4 h-4" />
-              Быстрый заказ
-            </button>
-          </div>
+          <button
+            onClick={handleAddToCart}
+            className="inline-flex items-center justify-center gap-3 border border-gold/70 bg-transparent text-foreground font-body text-sm tracking-wider uppercase px-8 py-4 rounded-sm hover:bg-gold hover:text-background transition-colors w-full sm:w-auto"
+          >
+            <ShoppingBag className="w-4 h-4" />
+            В корзину
+          </button>
         </div>
       </div>
-      {quickOrder && <QuickOrderModal product={product} onClose={() => setQuickOrder(false)} />}
     </div>
   );
 };
