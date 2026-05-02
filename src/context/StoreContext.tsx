@@ -210,6 +210,7 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       addOrder, updateOrderStatus, updateDeliverySettings,
       addDecorRequest, updateDecorRequestStatus,
       addChatSession, addMessageToChat, createTicket,
+      chatOpen, chatPrefill, openChat, closeChat, consumeChatPrefill,
     }}>
       {children}
     </StoreContext.Provider>
